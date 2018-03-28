@@ -11,20 +11,21 @@ html = urlopen(url)
 source = html.read()                            # 소스를 읽는다
 html.close()                                    # 모두 진행한 후 close 해준다
 index = 0
-# test
+
+
 soup = BeautifulSoup(source, "html5lib")
 table = soup.find(id="Top-Box-Office")
 movies = table.find_all(class_="middle_col")
 grade = table.find_all(class_="tMeterScore")
-print(movies)
-""" for movie in movies:
-    title = movie.get_text()
+
+for movie in movies:
+    title = movie.get_text()                    # 제목 크롤링
     title.strip()
-    link = movie.a.get('href')
+    link = movie.a.get('href')                      # link 크롤링
     url = 'https://www.rottentomatoes.com' + link
-    gra = grade[index].get_text()
-    query = "INSERT soup VALUES('%s', '%s', '%s')" % (title, url, gra)
+    gra = grade[index].get_text()                                           # 평점 크롤링
+    query = "INSERT soup VALUES('%s', '%s', '%s')" % (title, url, gra)          # INSERT query
     cur.execute(query)
     conn.commit()
     print("DB 입력 완료 title = %s , url = %s ,grade = %s " % (title, url, gra))
-    index += 1 """
+    index += 1
