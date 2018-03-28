@@ -11,7 +11,7 @@ html = urlopen(url)
 source = html.read()                            # 소스를 읽는다
 html.close()                                    # 모두 진행한 후 close 해준다
 index = 0
-
+# test
 soup = BeautifulSoup(source, "html5lib")
 table = soup.find(id="Top-Box-Office")
 movies = table.find_all(class_="middle_col")
